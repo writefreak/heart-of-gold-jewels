@@ -200,14 +200,14 @@ export default function Hero() {
                   {/* Price tag */}
                   <div className="mt-6 bg-amber-400 rounded-2xl px-4 py-2.5 inline-flex items-center gap-2">
                     <span className="font-sans text-xs font-600 text-amber-900">Starting from</span>
-                    <span className="font-display text-lg font-bold text-amber-900">₦15,000</span>
+                    <span className="font-display text-lg font-bold text-amber-900">₦1,000</span>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Floating review card */}
-            <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-xl border border-purple-100 p-4 flex items-center gap-3 max-w-[200px]">
+            <div className="md:flex hidden absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-xl border border-purple-100 p-4 items-center gap-3 max-w-[200px]">
               <div className="text-3xl">💛</div>
               <div>
                 <div className="font-sans text-xs font-600 text-purple-900">Latest Review</div>
@@ -222,7 +222,7 @@ export default function Hero() {
       </div>
 
       {/* Slide indicators */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2">
+      <div className="absolute -bottom-0 md:bottom-8 left-1/2 -translate-x-1/2 hidden md:flex items-center gap-2">
         {heroSlides.map((_, i) => (
           <button
             key={i}

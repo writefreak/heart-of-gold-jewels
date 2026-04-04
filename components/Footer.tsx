@@ -87,7 +87,9 @@ export default function Footer() {
             © {new Date().getFullYear()} Heart of Gold Jewels. All rights reserved.
           </p>
           <p className="font-sans text-xs text-purple-400">
-            Crafted with <span className="text-amber-400">♥</span> in Port Harcourt
+            <a href="https://tagelabs.vercel.app/" className='hover:underline'>
+            Crafted by tagelabs studios
+            </a>
           </p>
         </div>
       </div>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -26,12 +26,19 @@ html {
 body {
   background-color: #ffffff;
   color: #1a1a2e;
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 /* Gold shimmer text */
 .gold-shimmer {
-  background: linear-gradient(90deg, #d97706 0%, #fbbf24 25%, #f59e0b 50%, #fbbf24 75%, #d97706 100%);
+  background: linear-gradient(
+    90deg,
+    #d97706 0%,
+    #fbbf24 25%,
+    #f59e0b 50%,
+    #fbbf24 75%,
+    #d97706 100%
+  );
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -40,15 +47,19 @@ body {
 }
 
 @keyframes shimmer {
-  0% { background-position: 0% center; }
-  100% { background-position: 200% center; }
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
 }
 
 /* Gold button */
 .btn-gold {
   background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #fbbf24 100%);
   color: white;
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-weight: 600;
   letter-spacing: 0.05em;
   transition: all 0.3s ease;
@@ -64,7 +75,7 @@ body {
 .btn-purple {
   background: linear-gradient(135deg, #7e22ce 0%, #9333ea 100%);
   color: white;
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-weight: 600;
   letter-spacing: 0.05em;
   transition: all 0.3s ease;
@@ -81,7 +92,7 @@ body {
   border: 2px solid #d97706;
   color: #d97706;
   background: transparent;
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-weight: 600;
   letter-spacing: 0.05em;
   transition: all 0.3s ease;
@@ -100,18 +111,27 @@ body {
 
 .card-hover:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(126, 34, 206, 0.12), 0 8px 16px rgba(217, 119, 6, 0.08);
+  box-shadow:
+    0 20px 40px rgba(126, 34, 206, 0.12),
+    0 8px 16px rgba(217, 119, 6, 0.08);
 }
 
 /* Decorative divider */
 .gold-divider {
   height: 2px;
-  background: linear-gradient(90deg, transparent, #d97706, #fbbf24, #d97706, transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #d97706,
+    #fbbf24,
+    #d97706,
+    transparent
+  );
 }
 
 /* Section heading decoration */
 .section-tag {
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.2em;
@@ -120,22 +140,43 @@ body {
 }
 
 /* Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #faf5ff; }
-::-webkit-scrollbar-thumb { background: #9333ea; border-radius: 3px; }
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #faf5ff;
+}
+::-webkit-scrollbar-thumb {
+  background: #9333ea;
+  border-radius: 3px;
+}
 
 /* Auto-swipe transition */
-.swipe-enter { opacity: 0; transform: translateX(50px); }
-.swipe-enter-active { opacity: 1; transform: translateX(0); transition: all 0.6s ease; }
-.swipe-exit { opacity: 1; transform: translateX(0); }
-.swipe-exit-active { opacity: 0; transform: translateX(-50px); transition: all 0.6s ease; }
+.swipe-enter {
+  opacity: 0;
+  transform: translateX(50px);
+}
+.swipe-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.6s ease;
+}
+.swipe-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+.swipe-exit-active {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.6s ease;
+}
 
 /* Form inputs */
 .form-input {
   border: 1.5px solid #e9d5ff;
   border-radius: 8px;
   padding: 12px 16px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 0.95rem;
   color: #1a1a2e;
   background: white;
@@ -150,10 +191,39 @@ body {
 }
 
 .form-label {
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 0.85rem;
   font-weight: 500;
-  color: #4B0082;
+  color: #4b0082;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* Wrap all admin-only styles like this */
+
+.admin-layout .admin-input {
+  border: 1.5px solid #e9d5ff;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.95rem;
+  color: #1a1a2e;
+  background: white;
+  transition: all 0.2s ease;
+  width: 100%;
+  outline: none;
+}
+
+.admin-layout .admin-input:focus {
+  border-color: #9333ea;
+  box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.1);
+}
+
+.admin-layout .admin-label {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #4b0082;
   margin-bottom: 6px;
   display: block;
 }

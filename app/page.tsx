@@ -14,7 +14,8 @@ export default function Home() {
       <Hero />
 
       {/* Why Choose Us strip */}
-      <section className="py-10 bg-gradient-to-r from-purple-900 via-purple-800 to-purple-900">
+      <div className="md:pt-0 pt-14">
+         <section className="py-10 bg-gradient-to-r from-purple-900 via-purple-800 to-purple-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16">
             {[
@@ -30,6 +31,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+     </div>
 
       <FeaturedProducts />
       <InfoSwiper />

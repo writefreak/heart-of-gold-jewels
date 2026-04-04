@@ -66,7 +66,7 @@ export default function InfoSwiper() {
   const slide = slides[current]
 
   return (
-    <section className="py-20 bg-white overflow-hidden">
+    <section className="md:py-15 py-8 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -128,13 +128,13 @@ export default function InfoSwiper() {
           {/* Navigation buttons */}
           <button
             onClick={() => navigate(-1)}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-10 h-10 rounded-full bg-white shadow-lg border border-purple-100 flex items-center justify-center hover:bg-purple-50 transition-colors group hidden md:flex"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-10 h-10 rounded-full bg-white shadow-lg border border-purple-100  items-center justify-center hover:bg-purple-50 transition-colors group hidden md:flex"
           >
             <ChevronLeft className="w-5 h-5 text-purple-700" />
           </button>
           <button
             onClick={() => navigate(1)}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-10 h-10 rounded-full bg-white shadow-lg border border-purple-100 flex items-center justify-center hover:bg-purple-50 transition-colors group hidden md:flex"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-10 h-10 rounded-full bg-white shadow-lg border border-purple-100  items-center justify-center hover:bg-purple-50 transition-colors group hidden md:flex"
           >
             <ChevronRight className="w-5 h-5 text-purple-700" />
           </button>

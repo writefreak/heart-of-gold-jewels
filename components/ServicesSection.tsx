@@ -6,42 +6,29 @@ const services = [
     icon: Gem,
     title: 'Custom Jewelry Design',
     desc: 'Work with our artisans to bring your dream piece to life — from sketch to stunning reality.',
-    tag: 'Most Popular',
+   
     color: 'from-purple-700 to-purple-800',
   },
-  {
-    icon: Heart,
-    title: 'Bridal & Wedding Sets',
-    desc: 'Complete bridal jewelry packages — rings, earrings, necklaces and bracelets for your big day.',
-    tag: 'Special Offer',
-    color: 'from-amber-500 to-amber-600',
-  },
-  {
-    icon: Wrench,
-    title: 'Jewelry Repair',
-    desc: 'Restore your precious pieces to their former glory. We repair rings, chains, clasps and more.',
-    tag: '',
-    color: 'from-purple-600 to-purple-700',
-  },
+  
   {
     icon: Sparkles,
     title: 'Resizing & Engraving',
     desc: 'Perfect fit guaranteed. We resize rings and engrave personal messages on any piece.',
-    tag: '',
+  
     color: 'from-amber-600 to-amber-700',
   },
   {
     icon: Star,
     title: 'Bulk / Corporate Orders',
     desc: 'Special pricing for events, gifting campaigns, and corporate jewelry orders of 10+ pieces.',
-    tag: 'B2B',
+   
     color: 'from-purple-800 to-purple-900',
   },
   {
     icon: Truck,
     title: 'Delivery Anywhere',
     desc: 'Safe, insured delivery to your nearest bus stop or home across Nigeria.',
-    tag: 'Free on large orders',
+    
     color: 'from-amber-500 to-amber-600',
   },
 ]
@@ -62,7 +49,7 @@ export default function ServicesSection() {
         </div>
 
         {/* Services grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((s, i) => {
             const Icon = s.icon
             return (
@@ -72,13 +59,7 @@ export default function ServicesSection() {
                   <Icon className="w-6 h-6 text-white" />
                 </div>
 
-                {/* Tag */}
-                {s.tag && (
-                  <span className="inline-block bg-amber-50 border border-amber-200 text-amber-700 text-xs font-sans font-500 px-2.5 py-0.5 rounded-full mb-3">
-                    {s.tag}
-                  </span>
-                )}
-
+              
                 <h3 className="font-display text-xl font-600 text-purple-950 mb-2">{s.title}</h3>
                 <p className="font-body text-sm text-gray-500 leading-relaxed">{s.desc}</p>
               </div>
