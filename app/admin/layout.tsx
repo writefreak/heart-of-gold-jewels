@@ -1,22 +1,36 @@
 'use client'
-import { useState } from 'react'
-import { usePathname } from 'next/navigation'
+import { useState, useEffect } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import {
   LayoutDashboard, ShoppingBag, Package, PlusCircle,
   Crown, Eye, LogOut, Bell, Menu, X
 } from 'lucide-react'
+import { supabase } from '@/lib/supabase'
 
 const navItems = [
-  { href: '/admin',             label: 'Dashboard',      icon: LayoutDashboard },
-  { href: '/admin/orders',      label: 'Orders',         icon: ShoppingBag,    badge: 2 },
-  { href: '/admin/products',    label: 'Products',       icon: Package },
-  { href: '/admin/add-product', label: 'Add New Arrival',icon: PlusCircle },
+  { href: '/admin',             label: 'Dashboard',       icon: LayoutDashboard },
+  { href: '/admin/orders',      label: 'Orders',          icon: ShoppingBag,    badge: 2 },
+  { href: '/admin/products',    label: 'Products',        icon: Package },
+  { href: '/admin/add-product', label: 'Add New Arrival', icon: PlusCircle },
 ]
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [userEmail, setUserEmail] = useState<string | null>(null)
   const pathname = usePathname()
+  const router = useRouter()
+
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data }) => {
+      if (data.user) setUserEmail(data.user.email ?? null)
+    })
+  }, [])
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut()
+   window.location.href = '/login'
+  }
 
   const pageTitle = () => {
     if (pathname === '/admin') return 'Dashboard'
@@ -25,6 +39,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     if (pathname === '/admin/add-product') return 'Add New Arrival'
     return 'Admin'
   }
+
+  const avatarLetter = userEmail ? userEmail[0].toUpperCase() : 'A'
 
   return (
     <div className="admin-layout flex h-screen bg-gray-50 overflow-hidden">
@@ -78,11 +94,20 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
         {/* Bottom */}
         <div className="px-4 py-4 border-t border-purple-800">
-          <Link href="/" className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-purple-200 hover:bg-purple-800 hover:text-white transition-all">
+          {userEmail && (
+            <p className="text-[11px] text-purple-400 px-3 mb-2 truncate">{userEmail}</p>
+          )}
+          <Link
+            href="/"
+            className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-purple-200 hover:bg-purple-800 hover:text-white transition-all"
+          >
             <Eye className="w-4 h-4" />
             View Live Site
           </Link>
-          <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-purple-300 hover:bg-purple-800 hover:text-white transition-all mt-1">
+          <button
+            onClick={handleLogout}
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-purple-300 hover:bg-purple-800 hover:text-white transition-all mt-1"
+          >
             <LogOut className="w-4 h-4" />
             Logout
           </button>
@@ -113,7 +138,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full" />
             </button>
             <div className="w-9 h-9 rounded-full bg-gradient-to-br from-purple-700 to-purple-900 flex items-center justify-center text-white text-sm font-bold">
-              A
+              {avatarLetter}
             </div>
           </div>
         </header>
