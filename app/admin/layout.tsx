@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import {
   LayoutDashboard, ShoppingBag, Package, PlusCircle,
@@ -8,28 +8,31 @@ import {
 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 
-const navItems = [
-  { href: '/admin',             label: 'Dashboard',       icon: LayoutDashboard },
-  { href: '/admin/orders',      label: 'Orders',          icon: ShoppingBag,    badge: 2 },
-  { href: '/admin/products',    label: 'Products',        icon: Package },
-  { href: '/admin/add-product', label: 'Add New Arrival', icon: PlusCircle },
-]
-
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [userEmail, setUserEmail] = useState<string | null>(null)
+  const [pendingOrders, setPendingOrders] = useState(0)
   const pathname = usePathname()
-  const router = useRouter()
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
       if (data.user) setUserEmail(data.user.email ?? null)
     })
+    fetchPendingOrders()
   }, [])
+
+  const fetchPendingOrders = async () => {
+    const { count } = await supabase
+      .from('orders')
+      .select('*', { count: 'exact', head: true })
+      .eq('status', 'pending')
+
+    if (count !== null) setPendingOrders(count)
+  }
 
   const handleLogout = async () => {
     await supabase.auth.signOut()
-   window.location.href = '/login'
+    window.location.href = '/login'
   }
 
   const pageTitle = () => {
@@ -41,6 +44,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   }
 
   const avatarLetter = userEmail ? userEmail[0].toUpperCase() : 'A'
+
+  const navItems = [
+    { href: '/admin',             label: 'Dashboard',       icon: LayoutDashboard },
+    { href: '/admin/orders',      label: 'Orders',          icon: ShoppingBag,    badge: pendingOrders },
+    { href: '/admin/products',    label: 'Products',        icon: Package },
+    { href: '/admin/add-product', label: 'Add New Arrival', icon: PlusCircle },
+  ]
 
   return (
     <div className="admin-layout flex h-screen bg-gray-50 overflow-hidden">
@@ -82,7 +92,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               >
                 <Icon className="w-4 h-4 flex-shrink-0" />
                 <span className="font-medium">{item.label}</span>
-                {item.badge && (
+                {!!item.badge && item.badge > 0 && (
                   <span className="ml-auto bg-red-500 text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">
                     {item.badge}
                   </span>
@@ -135,7 +145,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <div className="flex items-center gap-3">
             <button className="relative p-2 rounded-lg text-gray-500 hover:bg-gray-100">
               <Bell className="w-5 h-5" />
-              <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full" />
+              {pendingOrders > 0 && (
+                <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full" />
+              )}
             </button>
             <div className="w-9 h-9 rounded-full bg-gradient-to-br from-purple-700 to-purple-900 flex items-center justify-center text-white text-sm font-bold">
               {avatarLetter}
