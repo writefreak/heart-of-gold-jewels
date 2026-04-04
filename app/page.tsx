@@ -38,7 +38,7 @@ export default function Home() {
       <ServicesSection />
 
       {/* CTA Banner */}
-      <section className="py-24 bg-white">
+      <section className="md:py-18 py-9 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="bg-gradient-to-br from-purple-900 via-purple-800 to-purple-950 rounded-3xl p-12 md:p-16 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-amber-400/10 rounded-full -translate-y-16 translate-x-16" />
